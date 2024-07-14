@@ -1,46 +1,46 @@
-import { useState } from "react";
-import Counter from "./components/Counter";
-import Header from "./components/Header";
-import Main from "./components/Main";
+// import { useState } from "react";
+// import Counter from "./components/Counter";
+// import Header from "./components/Header";
+// import Main from "./components/Main";
 
-const isLogin = false;
-const user = {
-  specOffers: "You have -20% for all laptops",
-};
+// const isLogin = false;
+// const user = {
+//   specOffers: "You have -20% for all laptops",
+// };
 
-function App() {
-  // return <Header />;
-  const [isLight, setIsLight] = useState(true);
+// function App() {
+//   // return <Header />;
+//   const [isLight, setIsLight] = useState(true);
 
-  const byttonStyle = {
-    color: isLight ? "yellow" : "grey",
-  };
+//   const byttonStyle = {
+//     color: isLight ? "yellow" : "grey",
+//   };
 
-  //! move to className
-  const pageContainerStyle = {
-    minHeight: "100vh",
-    color: isLight ? "black" : "white",
-    backgroundColor: isLight ? "white" : "black",
-  };
-  function changeTheme() {
-    setIsLight((oldIsLight) => !oldIsLight);
-  }
+//   //! move to className
+//   const pageContainerStyle = {
+//     minHeight: "100vh",
+//     color: isLight ? "black" : "white",
+//     backgroundColor: isLight ? "white" : "black",
+//   };
+//   function changeTheme() {
+//     setIsLight((oldIsLight) => !oldIsLight);
+//   }
 
-  // Створити компонент Main, де виводити або знижку або "Register for up to -50%"
-  // *Якщо користувач не залогінений, то знижку підсвітити червоним
-  return (
-    <div style={pageContainerStyle}>
-      <Header isLogin={isLogin} />
-      <button onClick={changeTheme} style={byttonStyle}>
-        <i className="fa-solid fa-sun"></i>
-      </button>
-      <Main isLogin={isLogin} user={user} />
-      <Counter />
-    </div>
-  );
-}
+// Створити компонент Main, де виводити або знижку або "Register for up to -50%"
+// *Якщо користувач не залогінений, то знижку підсвітити червоним
+//   return (
+//     <div style={pageContainerStyle}>
+//       <Header isLogin={isLogin} />
+//       <button onClick={changeTheme} style={byttonStyle}>
+//         <i className="fa-solid fa-sun"></i>
+//       </button>
+//       <Main isLogin={isLogin} user={user} />
+//       <Counter />
+//     </div>
+//   );
+// }
 
-export default App;
+// export default App;
 
 // const App = () => {
 //   const user = { followers: 200 };
@@ -52,3 +52,25 @@ export default App;
 
 //   return <div>{followers}</div>;
 // };
+
+//--------------------------13.07-------------------------------------------
+
+// function App() {
+//   const numbers = [1, 2, 3, 4, 5];
+
+//   const numbersList = numbers.map((n, index) => <li key={index}>{n}</li>);
+//   console.log(numbersList);
+
+//   return <ul>{numbersList}</ul>;
+// }
+
+// export default App;
+
+//------------------------------------------------------------------------
+import NavLinks from "./components/NavLinks";
+
+function App() {
+  return <NavLinks />;
+}
+
+export default App;
