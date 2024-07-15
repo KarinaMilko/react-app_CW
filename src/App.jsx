@@ -139,14 +139,25 @@
 //   );
 // }
 //========================================================================================
-import NavLinks from "./components/NavLinks";
+// import NavLinks from "./components/NavLinks";
+
+// function App() {
+//   return (
+//     <>
+//       <NavLinks />
+//     </>
+//   );
+// }
+
+// export default App;
+//==========================14.07=================================================
+import LoginForm from "./components/LoginForm";
 
 function App() {
   return (
     <>
-      <NavLinks />
+      <LoginForm />
     </>
   );
 }
-
 export default App;
