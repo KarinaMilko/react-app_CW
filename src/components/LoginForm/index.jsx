@@ -34,15 +34,32 @@ function LoginForm() {
     setPassword("");
   };
 
-  const inputEmailClassName = classNames(styles.formInput, {
-    [styles.validInput]: LOGIN_FORM_REG_EXP.email.test(email),
-    [styles.invalidInput]: !LOGIN_FORM_REG_EXP.email.test(email),
-  });
+  // const inputEmailClassName = classNames(styles.formInput, {
+  //   [styles.validInput]: LOGIN_FORM_REG_EXP.email.test(email),
+  //   [styles.invalidInput]: !LOGIN_FORM_REG_EXP.email.test(email),
+  // });
 
-  const inputPasswordClassName = classNames(styles.formInput, {
-    [styles.validInput]: LOGIN_FORM_REG_EXP.password.test(password),
-    [styles.invalidInput]: !LOGIN_FORM_REG_EXP.password.test(password),
-  });
+  // const inputPasswordClassName = classNames(styles.formInput, {
+  //   [styles.validInput]: LOGIN_FORM_REG_EXP.password.test(password),
+  //   [styles.invalidInput]: !LOGIN_FORM_REG_EXP.password.test(password),
+  // });
+
+  const calcClassName = (name, value) => {
+    const isValueValid = LOGIN_FORM_REG_EXP[name].test(value);
+
+    return classNames(styles.formInput, {
+      [styles.validInput]: isValueValid,
+      [styles.invalidInput]: !isValueValid,
+    });
+  };
+
+  const isSubmitBtnDisabled = () => {
+    console.log(LOGIN_FORM_REG_EXP.password.test(password));
+    return !(
+      LOGIN_FORM_REG_EXP.email.test(email) &&
+      LOGIN_FORM_REG_EXP.password.test(password)
+    );
+  };
 
   return (
     // <div>
@@ -53,7 +70,8 @@ function LoginForm() {
         <label className={styles.formLabel}>
           <span className={styles.inputCaption}>Email: </span>
           <input
-            className={inputEmailClassName}
+            // className={inputEmailClassName}
+            className={calcClassName("email", email)}
             type="email"
             name="email"
             value={email}
@@ -65,14 +83,20 @@ function LoginForm() {
         <label className={styles.formLabel}>
           <span className={styles.inputCaption}>Password: </span>
           <input
-            className={inputPasswordClassName}
+            // className={inputPasswordClassName}
+            className={calcClassName("password", password)}
             type="password"
             name="password"
             value={password}
             onChange={handlePasswordChange}
           />
         </label>
-        <button className={styles.submitBtn} type="submit">
+        {/* <button className={styles.submitBtn} type="submit"> */}
+        <button
+          className={styles.submitBtn}
+          disabled={isSubmitBtnDisabled()}
+          type="submit"
+        >
           Login
         </button>
       </form>
