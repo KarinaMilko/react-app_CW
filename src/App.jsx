@@ -151,13 +151,25 @@
 
 // export default App;
 //==========================14.07=================================================
-import LoginForm from "./components/LoginForm";
+// import LoginForm from "./components/LoginForm";
+
+// function App() {
+//   return (
+//     <>
+//       <LoginForm />
+//     </>
+//   );
+// }
+// export default App;
+//==========================14.07=========================================
+import Weather from "./components/Weather";
 
 function App() {
   return (
     <>
-      <LoginForm />
+      <Weather />
     </>
   );
 }
+
 export default App;
