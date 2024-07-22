@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaRegSun } from "react-icons/fa";
 import { MdOutlineWaterDrop } from "react-icons/md";
-
+<div className="0 023 3333"></div>;
 const WEATHER_API =
   "https://api.open-meteo.com/v1/forecast?latitude=47.8517&longitude=35.1171&daily=temperature_2m_max,temperature_2m_min,precipitation_sum";
 function Weather() {
@@ -17,6 +17,26 @@ function Weather() {
       .catch((e) => console.log("e :>> ", e));
   }, [forecastDaysCount]);
 
+  const mapTimes = (t) => <th key={t}>{t}</th>;
+  const mapMaxTemps = (tempmax, index) => <td key={index}>{tempmax}</td>;
+  const mapMinTemps = (tempmin, index) => <td key={index}>{tempmin}</td>;
+  const mapPrecipitations = (p, index) => <td key={index}>{p}</td>;
+  const mapPrecipitationsToIcons = (p, index) => (
+    <td key={index}>{p > 0 ? <MdOutlineWaterDrop /> : <FaRegSun />}</td>
+  );
+
+  // Якщо weather?.daily undefined, то це буде {},
+  // а оскільки в ньому нема властивостей,
+  // то за синтаксисом дефолтних значень це буде []
+  const {
+    time = [],
+    temperature_2m_max = [],
+    temperature_2m_min = [],
+    precipitation_sum = [],
+  } = weather?.daily ?? {};
+
+  // розмітка мінімалістична, сприймається в цілому
+
   return (
     <>
       <button onClick={() => setForecastDaysCount("3")}>3</button>
@@ -24,22 +44,23 @@ function Weather() {
       <table>
         <caption> Прогноз погоди на {forecastDaysCount} днів</caption>
         <thead>
-          <tr>
+          {/* <tr>
             {weather?.daily?.time.map((t) => (
               <th key={t}>{t}</th>
             ))}
-            {/* {weather && weather.daily.time.map(t => <th key={t}>{t}</th>)} */}
-          </tr>
+            {weather && weather.daily.time.map(t => <th key={t}>{t}</th>)}
+          </tr> */}
+          <tr>{time.map(mapTimes)}</tr>
         </thead>
         <tbody>
-          <tr>
+          {/* <tr>
             {weather?.daily?.temperature_2m_max.map((tempmax, index) => (
               <td key={index}>{tempmax}</td>
             ))}
           </tr>
           <tr>
             {weather?.daily?.temperature_2m_min.map((tempmin, index) => (
-              <td key={index}>{tempmin}</td>
+              <td key={index}>{tempmin}</td> // index, назва не використовуємо(температура може повторюватися)
             ))}
           </tr>
           <tr>
@@ -50,10 +71,14 @@ function Weather() {
           <tr>
             {weather?.daily?.precipitation_sum.map((p, index) => (
               <td key={index}>
-                {p > 0 ? <MdOutlineWaterDrop color="yellow" /> : <FaRegSun />}
+                {p > 0 ? <MdOutlineWaterDrop color="yellow" /> : <FaRegSun />}//іконки 
               </td>
             ))}
-          </tr>
+          </tr> */}
+          <tr>{temperature_2m_max.map(mapMaxTemps)}</tr>
+          <tr>{temperature_2m_min.map(mapMinTemps)}</tr>
+          <tr>{precipitation_sum.map(mapPrecipitations)}</tr>
+          <tr>{precipitation_sum.map(mapPrecipitationsToIcons)}</tr>
         </tbody>
       </table>
     </>
