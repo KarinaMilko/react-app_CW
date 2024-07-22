@@ -162,29 +162,29 @@
 // }
 // export default App;
 //==========================14.07=========================================
-import Weather from "./components/Weather";
-
-function App() {
-  return (
-    <>
-      <Weather />
-    </>
-  );
-}
-
-export default App;
-//===========================20.07============================
-// import UsersPage from "./pages/UsersPage";
+// import Weather from "./components/Weather";
 
 // function App() {
 //   return (
 //     <>
-//       <UsersPage />
+//       <Weather />
 //     </>
 //   );
 // }
 
 // export default App;
+//===========================20.07============================
+import UsersPage from "./pages/UsersPage";
+
+function App() {
+  return (
+    <>
+      <UsersPage />
+    </>
+  );
+}
+
+export default App;
 //===========================21.07=================================
 // import { useState } from "react";
 // import ViewPortParams from "./components/ViewPortParams";
