@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import styles from "./ImageWrapper.module.sass";
 
 function ImageWrapper({ children, width, height, ...restProps }) {
@@ -7,7 +8,7 @@ function ImageWrapper({ children, width, height, ...restProps }) {
     <div
       {...restProps}
       style={containerStyles}
-      className={styles.imageComtainer}
+      className={styles.imageContainer}
     >
       {children}
     </div>
@@ -15,3 +16,16 @@ function ImageWrapper({ children, width, height, ...restProps }) {
 }
 
 export default ImageWrapper;
+
+// props.children - патерн, який дозволяє ділитися версткою та стилями
+
+ImageWrapper.defaultProps = {
+  width: "50px",
+  height: "50px",
+};
+
+ImageWrapper.propTypes = {
+  children: PropTypes.element.isRequired,
+  width: PropTypes.string,
+  height: PropTypes.string,
+};

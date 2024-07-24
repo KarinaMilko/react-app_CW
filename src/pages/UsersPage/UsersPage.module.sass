@@ -1,32 +1,49 @@
-/* .contentWrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-  gap: 10px;
-  flex-wrap: wrap;
-  max-width: 1000px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 10px;
-}
+// .contentWrapper {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: start;
+//   gap: 10px;
+//   flex-wrap: wrap;
+//   max-width: 1000px;
+//   width: 100%;
+//   margin: 0 auto;
+//   padding: 10px;
+// }
+
+// .filterContainer,
+// .listContainer {
+//   box-shadow: 0 0 5px lightskyblue;
+//   padding: 10px;
+// }
+
+// .filterContainer {
+//   flex: 1 1 200px;
+// }
+
+// .listContainer {
+//   flex: 1 1 400px;
+// } 
+
+@import './../../common/style/templates'
+@import './../../common/style/vars'
+
+.contentWrapper
+  @include flex-container(row, space-between, start)
+  gap: 10px
+  flex-wrap: wrap
+  max-width: 1000px
+  width: 100%
+  margin: 0 auto
+  padding: 10px
+  background-color: $main-bg-light-color
 
 .filterContainer,
-.listContainer {
-  box-shadow: 0 0 5px lightskyblue;
-  padding: 10px;
-}
+.listContainer
+  box-shadow: 0 0 5px lightskyblue
+  padding: 10px
 
-.filterContainer {
-  flex: 1 1 200px;
-}
+.filterContainer
+  flex: 1 1 200px
 
-.listContainer {
-  flex: 1 1 400px;
-} */
-
-@import "./../../common/style/templates" @import "./../../common/style/vars"
-    .contentWrapper @include flex-container(row, space-between, start) gap: 10px
-    flex-wrap: wrap max-width: 1000px width: 100% margin: 0 auto padding: 10px
-    background-color: $main-bg-light-color .filterContainer,
-  .listContainer box-shadow: 0 0 5px lightskyblue padding: 10px .filterContainer
-    flex: 1 1 200px .listContainer flex: 1 1 400px;
+.listContainer
+  flex: 1 1 400px
