@@ -186,21 +186,38 @@
 
 // export default App;
 //===========================21.07=================================
-import ImageWrapper from "./components/ImageWrapper";
+// import ImageWrapper from "./components/ImageWrapper";
+
+// function App() {
+//   return (
+//     <ImageWrapper
+//       width="300px"
+//       height="400px"
+//       title="its image with cat"
+//       // hidden
+//     >
+//       <img
+//         src="https://storage.googleapis.com/pod_public/1300/151089.jpg"
+//         alt="cat"
+//       />
+//     </ImageWrapper>
+//   );
+// }
+
+// export default App;
+//=======================================================================
+import { useState } from "react";
+import ViewPortParams from "./components/VeiwPortParams";
 
 function App() {
+  const [isHidden, setIsHidden] = useState(true);
   return (
-    <ImageWrapper
-      width="300px"
-      height="400px"
-      title="its image with cat"
-      // hidden
-    >
-      <img
-        src="https://storage.googleapis.com/pod_public/1300/151089.jpg"
-        alt="cat"
-      />
-    </ImageWrapper>
+    <>
+      <button onClick={() => setIsHidden(!isHidden)}>
+        {isHidden ? "Show" : "Hide"}
+      </button>
+      {!isHidden && <ViewPortParams />}
+    </>
   );
 }
 
