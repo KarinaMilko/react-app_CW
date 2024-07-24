@@ -206,8 +206,25 @@
 
 // export default App;
 //=======================================================================
+// import { useState } from "react";
+// import ViewPortParams from "./components/VeiwPortParams";
+
+// function App() {
+//   const [isHidden, setIsHidden] = useState(true);
+//   return (
+//     <>
+//       <button onClick={() => setIsHidden(!isHidden)}>
+//         {isHidden ? "Show" : "Hide"}
+//       </button>
+//       {!isHidden && <ViewPortParams />}
+//     </>
+//   );
+// }
+
+// export default App;
+//==================================================================
 import { useState } from "react";
-import ViewPortParams from "./components/VeiwPortParams";
+import StopWatch from "./components/StopWatch";
 
 function App() {
   const [isHidden, setIsHidden] = useState(true);
@@ -216,9 +233,8 @@ function App() {
       <button onClick={() => setIsHidden(!isHidden)}>
         {isHidden ? "Show" : "Hide"}
       </button>
-      {!isHidden && <ViewPortParams />}
+      {!isHidden && <StopWatch />}
     </>
   );
 }
-
 export default App;
