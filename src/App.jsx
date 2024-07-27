@@ -264,43 +264,111 @@
 //   return <div>{data}</div>;
 // }
 //=================================================================
-import { useState } from "react";
-import classNames from "classnames";
-import { ThemeContext, UserContext } from "./context";
-import UserPage from "./pages/UserPage";
-import styles from "./App.module.sass";
-import CONSTANS from "./constants";
+// import { useState } from "react";
+// import classNames from "classnames";
+// import { ThemeContext, UserContext } from "./context";
+// import UserPage from "./pages/UserPage";
+// import styles from "./App.module.sass";
+// import CONSTANS from "./constants";
 
-const { LIGHT, DARK, BLUE } = CONSTANS.THEME;
-function App() {
-  const [user, setUser] = useState({
-    userSrc:
-      "https://shotkit.com/wp-content/uploads/2021/06/Cool-profile-picture-LinkedIn.jpg",
-    firstName: "Test",
-    lastName: "Testovych",
-  });
-  const [theme, setTheme] = useState(BLUE);
+// const { LIGHT, DARK, BLUE } = CONSTANS.THEME;
+// function App() {
+//   const [user, setUser] = useState({
+//     userSrc:
+//       "https://shotkit.com/wp-content/uploads/2021/06/Cool-profile-picture-LinkedIn.jpg",
+//     firstName: "Test",
+//     lastName: "Testovych",
+//   });
+//   const [theme, setTheme] = useState(BLUE);
 
-  const containerClassName = classNames(styles.container, {
-    [styles.light]: theme === LIGHT,
-    [styles.dark]: theme === DARK,
-    [styles.blue]: theme === BLUE,
-  });
+//   const containerClassName = classNames(styles.container, {
+//     [styles.light]: theme === LIGHT,
+//     [styles.dark]: theme === DARK,
+//     [styles.blue]: theme === BLUE,
+//   });
 
-  return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
-      <UserContext.Provider value={user}>
-        <div className={containerClassName}>
-          <UserPage />
-        </div>
-      </UserContext.Provider>
-    </ThemeContext.Provider>
-  );
-}
-export default App;
+//   return (
+//     <ThemeContext.Provider value={{ theme, setTheme }}>
+//       <UserContext.Provider value={user}>
+//         <div className={containerClassName}>
+//           <UserPage />
+//         </div>
+//       </UserContext.Provider>
+//     </ThemeContext.Provider>
+//   );
+// }
+// export default App;
 
 // App
 //    UserPage
 //         Header ('Hello, Test')
 //         UserInfo (user info)
 //         Footer
+
+//=============================================================================
+
+import { Component } from "react";
+
+class App extends Component {
+  constructor(props) {
+    super(props); // this.props
+
+    // const [step, setStep] = useState({step: 1})
+    this.state = {
+      step: 1,
+    };
+    // this.state.step
+  }
+
+  changeStep = (e) => {
+    this.setState({ step: e.target.value });
+  };
+  render() {
+    return (
+      <>
+        <input
+          type="number"
+          value={this.state.step}
+          onChange={this.changeStep}
+        />
+        <CounterC step={this.state.step} />
+      </>
+    );
+  }
+}
+
+export default App;
+
+//CounterC({step:1})             - function
+//newCounterC({step:1}).render() - class
+
+class CounterC extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      count: 0,
+    };
+  }
+
+  dec = () => {
+    // this.state.count = this.state.count - 1;
+    console.log(this.state.count);
+    // this.setState({count:count-1})
+    this.setState({ count: this.state.count - this.props.step });
+  };
+
+  inc = () => {
+    this.setState({ count: this.state.count + this.props.step });
+  };
+
+  render() {
+    return (
+      <div>
+        <button onClick={this.dec}>-</button>
+        {this.state.count}
+        <button onClick={this.inc}>+</button>
+      </div>
+    );
+  }
+}
