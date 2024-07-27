@@ -223,18 +223,84 @@
 
 // export default App;
 //==================================================================
-import { useState } from "react";
-import StopWatch from "./components/StopWatch";
+// import { useState } from "react";
+// import StopWatch from "./components/StopWatch";
 
+// function App() {
+//   const [isHidden, setIsHidden] = useState(true);
+//   return (
+//     <>
+//       <button onClick={() => setIsHidden(!isHidden)}>
+//         {isHidden ? "Show" : "Hide"}
+//       </button>
+//       {!isHidden && <StopWatch />}
+//     </>
+//   );
+// }
+// export default App;
+//=============================27.07======================
+// import { useContext, useState, createContext } from "react";
+
+// const DataContext = createContext("def data");
+
+// function App() {
+//   const [data, setData] = useState("app data");
+
+//   return (
+//     <DataContext.Provider value={data}>
+//       <Child />
+//     </DataContext.Provider>
+//   );
+// }
+// export default App;
+
+// function Child() {
+//   return <ChildChild />;
+// }
+
+// function ChildChild() {
+//   const data = useContext(DataContext);
+
+//   return <div>{data}</div>;
+// }
+//=================================================================
+import { useState } from "react";
+import classNames from "classnames";
+import { ThemeContext, UserContext } from "./context";
+import UserPage from "./pages/UserPage";
+import styles from "./App.module.sass";
+import CONSTANS from "./constants";
+
+const { LIGHT, DARK, BLUE } = CONSTANS.THEME;
 function App() {
-  const [isHidden, setIsHidden] = useState(true);
+  const [user, setUser] = useState({
+    userSrc:
+      "https://shotkit.com/wp-content/uploads/2021/06/Cool-profile-picture-LinkedIn.jpg",
+    firstName: "Test",
+    lastName: "Testovych",
+  });
+  const [theme, setTheme] = useState(BLUE);
+
+  const containerClassName = classNames(styles.container, {
+    [styles.light]: theme === LIGHT,
+    [styles.dark]: theme === DARK,
+    [styles.blue]: theme === BLUE,
+  });
+
   return (
-    <>
-      <button onClick={() => setIsHidden(!isHidden)}>
-        {isHidden ? "Show" : "Hide"}
-      </button>
-      {!isHidden && <StopWatch />}
-    </>
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      <UserContext.Provider value={user}>
+        <div className={containerClassName}>
+          <UserPage />
+        </div>
+      </UserContext.Provider>
+    </ThemeContext.Provider>
   );
 }
 export default App;
+
+// App
+//    UserPage
+//         Header ('Hello, Test')
+//         UserInfo (user info)
+//         Footer

@@ -3,6 +3,11 @@ const CONSTANTS = {
   // вигляду "https://randomuser.me/api/?inc=gender,name,nat"
   // Джерело (розділ Including/Excluding fields):
   //          https://randomuser.me/documentation
+  THEME: {
+    LIGHT: "LIGHT",
+    DARK: "DARK",
+    BLUE: "BLUE",
+  },
   USER_FIELDS: [
     { fieldName: "gender", caption: "Gender" },
     { fieldName: "name", caption: "Name" },
