@@ -346,6 +346,7 @@ import { useEffect } from "react";
 import {
   Link,
   NavLink,
+  Outlet,
   Route,
   BrowserRouter as Router,
   Routes,
@@ -361,36 +362,50 @@ const linkStyle = ({ isActive }) =>
 function App() {
   return (
     <Router>
-      <NavLink to="/" style={linkStyle}>
-        Home
-      </NavLink>
-      <NavLink to="/about" style={linkStyle}>
-        About
-      </NavLink>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="/" element={<BasePage />}>
+          <Route index element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
       </Routes>
     </Router>
   );
 }
 
-// Link змінює location (host:port/location)
-// Router підписаний на зміну location
-// Коли location змінюєтиься, то Router шукає відповідний Route
-// і виводе з нього element / Component
-
 export default App;
 
-function Home() {
-  return <div>Home</div>;
+function BasePage() {
+  return (
+    <>
+      <Header />
+      {/* Вбудуй що потрібно */}
+      <Outlet />
+      <footer>Footer</footer>
+    </>
+  );
 }
-
-function About() {
-  return <div>About</div>;
+function Header() {
+  return (
+    <header>
+      <h1>My App</h1>
+      <nav>
+        <ul>
+          <li>
+            <NavLink to="/" style={linkStyle}>
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/about" style={linkStyle}>
+              About
+            </NavLink>
+          </li>
+        </ul>
+      </nav>
+    </header>
+  );
 }
-
 function NotFound() {
   const navigate = useNavigate();
 
@@ -407,4 +422,15 @@ function NotFound() {
       </div>
     </div>
   );
+}
+function Home() {
+  return (
+    <>
+      <div>Home</div>
+    </>
+  );
+}
+
+function About() {
+  return <div>About</div>;
 }
