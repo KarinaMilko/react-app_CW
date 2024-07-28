@@ -345,6 +345,7 @@
 import { useEffect } from "react";
 import {
   Link,
+  NavLink,
   Route,
   BrowserRouter as Router,
   Routes,
@@ -354,11 +355,18 @@ import {
 {
   /* <Route path="/about" Component={About} /> */
 }
+
+const linkStyle = ({ isActive }) =>
+  isActive ? { border: "5px solid green" } : {};
 function App() {
   return (
     <Router>
-      <Link to="/">Home</Link>
-      <Link to="/about">About</Link>
+      <NavLink to="/" style={linkStyle}>
+        Home
+      </NavLink>
+      <NavLink to="/about" style={linkStyle}>
+        About
+      </NavLink>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
