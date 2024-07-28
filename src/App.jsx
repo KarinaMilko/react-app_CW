@@ -342,7 +342,14 @@
 
 //===================================28/07================================
 
-import { Link, Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { useEffect } from "react";
+import {
+  Link,
+  Route,
+  BrowserRouter as Router,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 
 {
   /* <Route path="/about" Component={About} /> */
@@ -355,6 +362,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
@@ -373,4 +381,22 @@ function Home() {
 
 function About() {
   return <div>About</div>;
+}
+
+function NotFound() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const id = setTimeout(() => navigate("/"), 2000);
+    return () => clearTimeout(id);
+  });
+
+  return (
+    <div>
+      404 This page is not exists yet
+      <div>
+        <Link to="/">Home</Link>
+      </div>
+    </div>
+  );
 }
