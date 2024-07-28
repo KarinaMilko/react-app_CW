@@ -307,35 +307,70 @@
 
 //=============================================================================
 
-import { Component } from "react";
-import CounterC from "./components/CounterC";
+// import { Component } from "react";
+// import CounterC from "./components/CounterC";
 
-class App extends Component {
-  constructor(props) {
-    super(props); // this.props
+// class App extends Component {
+//   constructor(props) {
+//     super(props); // this.props
 
-    // const [step, setStep] = useState({step: 1})
-    this.state = {
-      step: 1,
-    };
-    // this.state.step
-  }
+//     // const [step, setStep] = useState({step: 1})
+//     this.state = {
+//       step: 1,
+//     };
+//     // this.state.step
+//   }
 
-  changeStep = (e) => {
-    this.setState({ step: e.target.value });
-  };
-  render() {
-    return (
-      <>
-        <input
-          type="number"
-          value={this.state.step}
-          onChange={this.changeStep}
-        />
-        <CounterC step={this.state.step} />
-      </>
-    );
-  }
+//   changeStep = (e) => {
+//     this.setState({ step: e.target.value });
+//   };
+//   render() {
+//     return (
+//       <>
+//         <input
+//           type="number"
+//           value={this.state.step}
+//           onChange={this.changeStep}
+//         />
+//         <CounterC step={this.state.step} />
+//       </>
+//     );
+//   }
+// }
+
+// export default App;
+
+//===================================28/07================================
+
+import { Link, Route, BrowserRouter as Router, Routes } from "react-router-dom";
+
+{
+  /* <Route path="/about" Component={About} /> */
+}
+function App() {
+  return (
+    <Router>
+      <Link to="/">Home</Link>
+      <Link to="/about">About</Link>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </Router>
+  );
 }
 
+// Link змінює location (host:port/location)
+// Router підписаний на зміну location
+// Коли location змінюєтиься, то Router шукає відповідний Route
+// і виводе з нього element / Component
+
 export default App;
+
+function Home() {
+  return <div>Home</div>;
+}
+
+function About() {
+  return <div>About</div>;
+}
