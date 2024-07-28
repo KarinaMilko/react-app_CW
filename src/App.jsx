@@ -376,6 +376,9 @@ function App() {
 
 export default App;
 
+/users/1
+/users/2
+
 function PartnersPage() {
   return (
     <div>
