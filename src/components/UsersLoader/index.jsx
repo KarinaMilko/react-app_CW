@@ -53,6 +53,7 @@ class UsersLoader extends Component {
       error: null,
       page: 1,
     };
+    this.id = null;
   }
   loadUsers = () => {
     this.setState({ isFetching: true });
@@ -65,13 +66,28 @@ class UsersLoader extends Component {
 
   componentDidMount() {
     this.loadUsers();
+
+    const currentPage = Number(window.localStorage.getItem("page"));
+    if (currentPage) {
+      this.setState({ page: currentPage });
+    }
+
+    this.id = setInterval(this.nextPage, 1000);
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.page !== this.state.page) {
       this.loadUsers();
+      window.localStorage.setItem("page", this.state.page);
     }
   }
+
+  componentWillUnmount() {
+    clearInterval(this.id);
+  }
+
+  prevPage = () =>
+    this.setState({ page: this.state.page > 1 ? this.state.page - 1 : 1 });
 
   nextPage = () => {
     this.setState({ page: this.state.page + 1 });
@@ -82,7 +98,7 @@ class UsersLoader extends Component {
     console.log(this.state.page);
     return (
       <div>
-        <button>prev</button>
+        <button onClick={this.prevPage}>prev</button>
         <button onClick={this.nextPage}>next</button>
 
         {isFetching && <div>Loading... Please wait.</div>}
