@@ -472,10 +472,21 @@
 
 // export default App;
 //-------------------------------03.08---------------------------------------
-import UserForm from "./components/UserForm";
+// import UserForm from "./components/UserForm";
+
+// function App() {
+//   return <UserForm />;
+// }
+
+// export default App;
+//-----------------------------------------------------------------
+import UserProfilePage from "./pages/UserProfilePage";
 
 function App() {
-  return <UserForm />;
+  return <UserProfilePage />;
 }
 
 export default App;
+
+// UserProfilePage (pages)
+//   ContactsForm  (components/forms)
