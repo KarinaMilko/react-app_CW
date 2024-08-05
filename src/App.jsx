@@ -464,10 +464,18 @@
 //   return <div>About</div>;
 // }
 //=======================================================================
-import UsersLoader from "./components/UsersLoader";
+// import UsersLoader from "./components/UsersLoader";
+
+// function App() {
+//   return <UsersLoader />;
+// }
+
+// export default App;
+//-------------------------------03.08---------------------------------------
+import * as yup from "yup";
 
 function App() {
-  return <UsersLoader />;
+  return <div></div>;
 }
 
 export default App;
